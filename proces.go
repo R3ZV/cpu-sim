@@ -1,74 +1,100 @@
 package main
 
-import ("fmt"
-         "container/heap")
+import (
+	"container/heap"
+	"fmt"
+)
 
-type proces struct{
-    pid int
-    burst int
-    remainingBurst int
-    period int //simulam un CPU embedded, asa ca vom sti toate procesele, si ele se repeta
-    priority int   
-}
-func newProces(pid int, burst int, period int) *proces{
-    p := proces{pid:pid , burst:burst, remainingBurst:burst, period:period, priority:1} 
-    return &p //si schema de milioane e ca el NU IESE DIN SCOPE
-}
-func compareProces(a,b proces) bool{
-   return a.burst<b.burst
+type proc struct {
+	pid            int
+	burst          int
+	remainingBurst int
+
+	// time until the process should execute again
+	period   int
+	priority int
 }
 
-//implementam structura care tine procesele, cu metodele aferente, poate ca asta ar trebui sa fie in alt fisier
-type procesHeap []proces
-func (h procesHeap) Len() int {
- return len(h)
-}
-func (h procesHeap) Less(i, j int) bool {
-    return compareProces(h[i], h[j])
-}
-func (h procesHeap) Swap(i, j int) {
-   h[i], h[j]= h[j], h[i]
-} 
-///restul nu mai au surprize
-func (h *procesHeap) Push(x interface{}) {
-	*h = append(*h, x.(proces))
+func NewProc(pid int, burst int, period int) *proc {
+	p := proc{
+		pid:            pid,
+		burst:          burst,
+		remainingBurst: burst,
+		period:         period,
+		priority:       1,
+	}
+
+	return &p
 }
 
-func (h *procesHeap) Pop() interface{} {
+type procHeap []proc
+
+func (h procHeap) Len() int {
+	return len(h)
+}
+
+func (h procHeap) Less(i, j int) bool {
+	return h[i].burst < h[j].burst
+}
+
+func (h procHeap) Swap(i, j int) {
+	h[i], h[j] = h[j], h[i]
+}
+
+func (h *procHeap) Push(x interface{}) {
+	*h = append(*h, x.(proc))
+}
+
+func (h *procHeap) Pop() interface{} {
 	old := *h
 	n := len(old)
-	x := old[n-1]
+
+	item := old[n-1]
+
 	*h = old[0 : n-1]
-	return x
+	return item
 }
-func rateMonotonic(procese []proces){
-   var time=0
-   var busyTime=0
-   const MAX_TIME=200 //TODO fa-l pe asta LCM, 200 e asa de test
-   q := &procesHeap{}
-   heap.Init(q)
-   for i:=0; i<len(procese); i++{
-      heap.Push(q, procese[i]) 
-   }
-   for time<MAX_TIME{
-      if(q.Len()>0){//daca e ceva ce se poate executa, se executa
-          busyTime++
-          var currProces proces
-          currProces=heap.Pop(q).(proces)
-          currProces.remainingBurst--///calculam cat burst mai are 
-          if(currProces.remainingBurst!=0){
-             heap.Push(q, currProces)
-          }
-      }
-      for i:=0; i<len(procese); i++{
-         if(time % procese[i].period == 0){///mai baga unul la rand, daca i-a venit sorocul
-             heap.Push(q, procese[i]);
-         }
-      }
-      time++//TODO vezi daca nu se poate simula mai eficient, poate sa deducem cand va fi eveniment cu alt heap
-   }
+
+func rateMonotonic(procese []proc) {
+	// TODO:
+	// MAX_TIME should be LCM
+	const MAX_TIME = 200
+
+	time := 0
+	busyTime := 0
+
+	q := &procHeap{}
+    heap.Init(q)
+    
+	for i := 0; i < len(procese); i++ {
+		heap.Push(q, procese[i])
+	}
+
+	for time < MAX_TIME {
+		if q.Len() > 0 {
+			busyTime++
+			var currProces proc
+			currProces = heap.Pop(q).(proc)
+
+			currProces.remainingBurst--
+			if currProces.remainingBurst != 0 {
+				heap.Push(q, currProces)
+			}
+		}
+
+		for i := 0; i < len(procese); i++ {
+			if time%procese[i].period == 0 {
+				heap.Push(q, procese[i])
+			}
+		}
+
+		//TODO:
+		// maybe someting more efficient?
+		time++
+	}
 }
-func main(){
-    var s=newProces(1, 2, 3) ///TODO scrie teste pentru rate-monotonic scheduling
-    fmt.Println(s.burst)
+
+func main() {
+	s := NewProc(1, 2, 3)
+	fmt.Println(s.burst)
 }
