@@ -1,29 +1,29 @@
 package core
 
-type ProcHeap []Proc
-
-func (h ProcHeap) Len() int {
-	return len(h)
+type ProcHeap struct {
+	procs []Proc
+	cmp   func(a, b Proc) bool
 }
 
-func (h ProcHeap) Less(i, j int) bool {
-	return h[i].Burst < h[j].Burst
-}
+func (self ProcHeap) Len() int      { return len(self.procs) }
+func (self ProcHeap) Swap(i, j int) { self.procs[i], self.procs[j] = self.procs[j], self.procs[i] }
 
-func (h ProcHeap) Swap(i, j int) {
-	h[i], h[j] = h[j], h[i]
-}
+func (self ProcHeap) Less(i, j int) bool { return self.cmp(self.procs[i], self.procs[j]) }
+func (self *ProcHeap) Push(proc any)     { (*self).procs = append((*self).procs, proc.(Proc)) }
 
-func (h *ProcHeap) Push(x interface{}) {
-	*h = append(*h, x.(Proc))
-}
-
-func (h *ProcHeap) Pop() interface{} {
-	old := *h
+func (self *ProcHeap) Pop() any {
+	old := (*self).procs
 	n := len(old)
 
 	item := old[n-1]
 
-	*h = old[0 : n-1]
-	return item
+	(*self).procs = old[0 : n-1]
+	return &item
+}
+
+func NewProcHeap(cmp func(a, b Proc) bool) *ProcHeap {
+	return &ProcHeap{
+		procs: []Proc{},
+		cmp:   cmp,
+	}
 }
