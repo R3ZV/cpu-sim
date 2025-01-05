@@ -13,7 +13,7 @@ func (self FCFS) GetName() string {
 }
 
 func (self FCFS) Cmp(first, other core.Proc) bool {
-	return first.Arrive < other.Arrive
+	return first.Priority < other.Priority
 }
 
 func NewFCFS(name string) FCFS {
