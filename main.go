@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"sim/core"
 	"sim/cpu"
-	"sim/sched"
 	"sim/log"
+	"sim/sched"
 )
 
 func addJobs(workload *[][]core.Proc) {

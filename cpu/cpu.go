@@ -68,7 +68,7 @@ func (self *CPU) available() bool {
 }
 
 func (self *CPU) procDone() bool {
-    log.Assert(self.currProc != nil, "ProcDone should only be called if there was a process on CPU")
+	log.Assert(self.currProc != nil, "ProcDone should only be called if there was a process on CPU")
 	return self.currProc.Burst == 0
 }
 

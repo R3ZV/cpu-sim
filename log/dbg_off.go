@@ -10,4 +10,3 @@ func Assert(cond bool, msg string) {
 		panic(msg)
 	}
 }
-
