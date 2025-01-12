@@ -17,7 +17,10 @@ func (self SJF) IsPreemptive() bool {
 }
 
 func (self SJF) Cmp(first, other core.Proc) bool {
-	return first.Burst < other.Burst
+	if first.Arrive == other.Arrive {
+		return first.Burst < other.Burst
+	}
+	return first.Arrive < other.Arrive
 }
 
 func NewSJF(name string) SJF {
@@ -33,15 +36,17 @@ func NewSJF(name string) SJF {
 // 4. Known burst time
 func SJFJobs(workload *[][]core.Proc) {
 	jobs := []core.Proc{
-		*core.NewProc(0, 3, 0, 0, -1),
-		*core.NewProc(1, 1, 0, 0, -1),
-		*core.NewProc(2, 4, 0, 0, -1),
+		*core.NewProc(1, 10, 0, 0, -1),
+		*core.NewProc(0, 100, 0, 0, -1),
+		*core.NewProc(3, 20, 0, 0, -1),
+		*core.NewProc(2, 30, 0, 0, -1),
 	}
 	*workload = append(*workload, jobs)
 
+	// Relaxing assumption 1.
 	jobs = []core.Proc{
-		*core.NewProc(0, 30, 0, 0, -1),
-		*core.NewProc(1, 30, 0, 0, -1),
+		*core.NewProc(0, 10, 10, 0, -1),
+		*core.NewProc(1, 10, 10, 0, -1),
 		*core.NewProc(2, 100, 0, 0, -1),
 	}
 

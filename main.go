@@ -10,20 +10,20 @@ import (
 
 func addJobs(workload *[][]core.Proc) {
 	sched.FCFSJobs(workload)
-	// SJFJobs(workload);
-}
-
-func loadJobs(cpu *cpu.CPU, jobs []core.Proc) {
-	for _, job := range jobs {
-		cpu.AddProc(job)
-	}
+	sched.SJFJobs(workload)
 }
 
 func main() {
 	schedAlgs := []sched.Scheduler{
 		sched.NewFCFS("FCFS"),
-		// sched.NewSJF("SJF"),
+		sched.NewSJF("SJF"),
+
+		// TODO:
+		// sched.NewSJF("STCF"),
+		// sched.NewSJF("RR"),
 		// sched.NewPriority("Priority"),
+		// sched.NewSJF("RM"),
+		// sched.NewSJF("EDF"),
 	}
 
 	workload := [][]core.Proc{}
@@ -36,14 +36,12 @@ func main() {
 			fmt.Printf("Workload %d:\n", i)
 
 			cpu := cpu.NewCPU(algo)
-			loadJobs(cpu, jobs)
+			cpu.AddJobs(jobs)
 
-			if algo.IsPreemptive() {
-				for !cpu.IsDone() {
+			for !cpu.IsDone() {
+				if algo.IsPreemptive() {
 					cpu.PreemptiveTick()
-				}
-			} else {
-				for !cpu.IsDone() {
+				} else {
 					cpu.Tick()
 				}
 			}

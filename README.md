@@ -6,7 +6,7 @@ performance in different scenarios.
 Implemented algorithms:
 
  - [x] First Come, First Served (FCFS)
- - [ ] Shortest Job First (SJF)
+ - [x] Shortest Job First (SJF)
  - [ ] Shortest time to Completion First (STCF)
  - [ ] Round Robin (RR)
  - [ ] Priority based

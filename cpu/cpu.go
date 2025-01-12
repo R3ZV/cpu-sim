@@ -40,25 +40,31 @@ func NewCPU(schedAlgo sched.Scheduler) *CPU {
 	}
 }
 
+func (self *CPU) AddJobs(jobs []core.Proc) {
+	for _, job := range jobs {
+		self.addProc(job)
+	}
+}
+
 func (self *CPU) loadProc() {
 	self.currProc = heap.Pop(self.Procs).(*core.Proc)
-	log.Debug("Loading proc PID: %d\n", self.currProc.Pid)
+	log.Debug("[T=%d] Loading proc PID: %d\n", self.timer, self.currProc.Pid)
 }
 
 func (self *CPU) unloadProc() {
-	log.Debug("Unloading proc PID: %d\n", self.currProc.Pid)
+	log.Debug("[T=%d] Unloading proc PID: %d\n", self.timer, self.currProc.Pid)
 	self.currProc = nil
 }
 
 func (self *CPU) changeProc() {
-	log.Debug("Unloading proc PID: %d\n", self.currProc.Pid)
+	log.Debug("[T=%d] Unloading proc PID: %d\n", self.timer, self.currProc.Pid)
 	exchange := heap.Pop(self.Procs).(*core.Proc)
-	log.Debug("Loading proc PID: %d\n", exchange.Pid)
+	log.Debug("[T=%d] Loading proc PID: %d\n", self.timer, exchange.Pid)
 	heap.Push(self.Procs, *self.currProc)
 	self.currProc = exchange
 }
 
-func (self *CPU) AddProc(proc core.Proc) {
+func (self *CPU) addProc(proc core.Proc) {
 	heap.Push(self.Procs, proc)
 	self.arrivalTimes = append(self.arrivalTimes, proc.Arrive)
 }
@@ -128,6 +134,7 @@ func (self *CPU) TurnaroundTime() float32 {
 	totalTime := 0
 	for _, x := range self.taTimes {
 		totalTime += x
+		log.Debug("Around time: %d\n", x)
 	}
 	return (float32(totalTime) / float32(len(self.taTimes)))
 }
