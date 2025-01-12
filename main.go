@@ -17,12 +17,11 @@ func main() {
 	schedAlgs := []sched.Scheduler{
 		sched.NewFCFS("FCFS"),
 		sched.NewSJF("SJF"),
-
+		sched.NewRMS("RMS"),
 		// TODO:
 		// sched.NewSJF("STCF"),
 		// sched.NewSJF("RR"),
 		// sched.NewPriority("Priority"),
-		// sched.NewSJF("RM"),
 		// sched.NewSJF("EDF"),
 	}
 

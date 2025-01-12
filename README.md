@@ -10,7 +10,7 @@ Implemented algorithms:
  - [ ] Shortest time to Completion First (STCF)
  - [ ] Round Robin (RR)
  - [ ] Priority based
- - [ ] Rate monotonic (RM)
+ - [x] Rate monotonic (RM)
  - [ ] Earliest Deadline First (EDF)
 
 # Metrics
