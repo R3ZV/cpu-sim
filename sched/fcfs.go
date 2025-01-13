@@ -16,7 +16,7 @@ func (self FCFS) IsPreemptive() bool {
 	return false
 }
 
-func (self FCFS) Cmp(first, other core.Proc) bool {
+func (self FCFS) Cmp(first, other core.Proc, time int) bool {
 	return first.Arrive < other.Arrive
 }
 

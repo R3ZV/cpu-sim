@@ -16,7 +16,7 @@ func (self Priority) IsPreemptive() bool {
 	return true
 }
 
-func (self Priority) Cmp(first, other core.Proc) bool {
+func (self Priority) Cmp(first, other core.Proc, time int) bool {
 	return first.Priority < other.Priority
 }
 
