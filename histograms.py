@@ -20,12 +20,13 @@ class Workload:
     waits=[]
 
 f=open("data", "r")
-count_loads=3
+content=f.readlines()
 loads=[Workload() for i in range(count_loads+1)] #workloads in the test data are 1-indexed, arrays are 0-indexed, 
-current_load=0
-for line in f:
-    words=line.split()
-    if(len(words)>0):
+count_loads=0
+for line in content:
+   words=line.split()
+   if(len(words)>0 and words[0]=='Workload'):
+      count_loads=max(int(words[1][0:-1]), count_loads)
       if(words[0]=='Workload'):
          current_load=int(words[1][0:-1])
       elif words[0]=='Testing':
