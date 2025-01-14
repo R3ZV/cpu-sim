@@ -7,15 +7,16 @@ if not os.path.exists(output_dir):
 
 
 # these can be all sorts of metrics
-def plot_workload(name, metric, listAlgs, listTimes):
+def plot_workload(name, metric, listAlgs, listTimes, hist_color):
     save_name_original = name + " " + metric + ".jpg"
     save_name = save_name_original.replace(" ", "_")
     save_path = os.path.join(output_dir, save_name)
     print(f"![{save_name_original}]({save_path})")
-    plt.bar(listAlgs, listTimes, color="red")
+    plt.bar(listAlgs, listTimes, color=hist_color)
     plt.xlabel(name)
     plt.title(metric)
     plt.savefig(save_path, format="jpg", dpi=300)
+    plt.clf()
 
 
 class Workload:
@@ -51,7 +52,7 @@ for line in content:
             loads[current_load].waits.append(float(words[2]))
 
 for i in range(1, count_loads + 1):
-    plot_workload(f"Workload {i}", "Usage", loads[i].algorithms, loads[i].usages)
-    plot_workload(f"Workload {i}", "Turnaround", loads[i].algorithms, loads[i].tas)
-    plot_workload(f"Workload {i}", "Waiting", loads[i].algorithms, loads[i].waits)
+    plot_workload(f"Workload {i}", "Usage", loads[i].algorithms, loads[i].usages, "green")
+    plot_workload(f"Workload {i}", "Turnaround", loads[i].algorithms, loads[i].tas, "blue")
+    plot_workload(f"Workload {i}", "Waiting", loads[i].algorithms, loads[i].waits, "red")
 
