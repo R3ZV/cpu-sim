@@ -49,3 +49,4 @@ following metrics:
 - https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched.pdf
 - Operating System Concepts, 10th Edition
 by Abraham Silberschatz, Peter B. Galvin, Greg Gagne
+- Liu, C. L.; Layland, J. (1973), "Scheduling algorithms for multiprogramming in a hard real-time environment", Journal of the ACM, 20 (1), pp. 46–61
