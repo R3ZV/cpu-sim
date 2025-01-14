@@ -22,4 +22,4 @@ func NewEDF(name string) EDF {
 	return EDF{
 		name,
 	}
-} //TODO give this man a test
+}
