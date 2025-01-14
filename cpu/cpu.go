@@ -61,9 +61,11 @@ func (self *CPU) AddProc(proc core.Proc) {
 }
 
 func (self *CPU) loadProc() {
-	self.currProc = heap.Pop(self.Procs).(*core.Proc)
-	self.statTimes[self.currProc.Pid]["response"] = self.timer - self.currProc.Arrive
-	log.Debug("[T=%d] Loading proc PID: %d\n", self.timer, self.currProc.Pid)
+    if self.Procs.Len() > 0 {
+        self.currProc = heap.Pop(self.Procs).(*core.Proc)
+        self.statTimes[self.currProc.Pid]["response"] = self.timer - self.currProc.Arrive
+        log.Debug("[T=%d] Loading proc PID: %d\n", self.timer, self.currProc.Pid)
+    }
 }
 
 func (self *CPU) unloadProc() {
@@ -97,7 +99,6 @@ func (self *CPU) procDone() bool {
 
 func (self *CPU) Tick() {
 	if self.preemptive && self.event {
-		log.Debug("[T=%d] Preemptive: [%t] | Event: [%t]\n", self.timer, self.preemptive, self.event)
 		if self.currProc != nil {
 			self.changeProc()
 		}
@@ -108,7 +109,7 @@ func (self *CPU) Tick() {
 		self.loadProc()
 	}
 
-	if self.procDone() {
+	if self.currProc != nil && self.procDone() {
 		self.statTimes[self.currProc.Pid]["turnaround"] = self.timer - self.currProc.Arrive
 		self.statTimes[self.currProc.Pid]["wait"] = self.timer - self.currProc.Arrive - self.currProc.InitBurst
 

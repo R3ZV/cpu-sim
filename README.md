@@ -9,9 +9,9 @@ Implemented algorithms:
  - [x] Shortest Job First (SJF)
  - [x] Preemptive Shortest Job First (PSJF)
  - [x] Priority based
+ - [x] Rate monotonic (RM)
+ - [x] Earliest Deadline First (EDF)
  - [ ] Round Robin (RR)
- - [ ] Rate monotonic (RM)
- - [ ] Earliest Deadline First (EDF)
 
 # Metrics
 

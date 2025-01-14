@@ -36,6 +36,18 @@ Turnaround time: 126.67
 Response time: 73.33
 Waiting time: 73.33
 
+Workload 6:
+Usage: 83.87%
+Turnaround time: 38.00
+Response time: 12.00
+Waiting time: 12.00
+
+Workload 7:
+Usage: 82.76%
+Turnaround time: 39.17
+Response time: 9.17
+Waiting time: 9.17
+
 Testing SJF
 ============
 Workload 0:
@@ -73,6 +85,18 @@ Usage: 100.00%
 Turnaround time: 113.33
 Response time: 60.00
 Waiting time: 60.00
+
+Workload 6:
+Usage: 83.87%
+Turnaround time: 35.00
+Response time: 9.00
+Waiting time: 9.00
+
+Workload 7:
+Usage: 82.76%
+Turnaround time: 39.17
+Response time: 9.17
+Waiting time: 9.17
 
 Testing PSJF
 ============
@@ -112,6 +136,18 @@ Turnaround time: 85.00
 Response time: 35.00
 Waiting time: 31.67
 
+Workload 6:
+Usage: 83.87%
+Turnaround time: 37.00
+Response time: 10.00
+Waiting time: 11.00
+
+Workload 7:
+Usage: 82.76%
+Turnaround time: 55.42
+Response time: 22.50
+Waiting time: 25.42
+
 Testing Priority
 ============
 Workload 0:
@@ -149,6 +185,18 @@ Usage: 94.12%
 Turnaround time: 123.33
 Response time: 66.67
 Waiting time: 70.00
+
+Workload 6:
+Usage: 83.87%
+Turnaround time: 43.00
+Response time: 19.00
+Waiting time: 17.00
+
+Workload 7:
+Usage: 82.76%
+Turnaround time: 61.67
+Response time: 30.00
+Waiting time: 31.67
 
 Testing RM
 ============
@@ -188,3 +236,63 @@ Turnaround time: 138.33
 Response time: 81.67
 Waiting time: 85.00
 
+Workload 6:
+Usage: 83.87%
+Turnaround time: 40.00
+Response time: 19.00
+Waiting time: 14.00
+
+Workload 7:
+Usage: 0.00%
+Turnaround time: 0.00
+Response time: 0.00
+Waiting time: 0.00
+Testing EDF
+============
+Workload 0:
+Usage: 100.00%
+Turnaround time: 20.00
+Response time: 10.00
+Waiting time: 10.00
+
+Workload 1:
+Usage: 100.00%
+Turnaround time: 110.00
+Response time: 70.00
+Waiting time: 70.00
+
+Workload 2:
+Usage: 100.00%
+Turnaround time: 67.50
+Response time: 27.50
+Waiting time: 27.50
+
+Workload 3:
+Usage: 96.00%
+Turnaround time: 81.67
+Response time: 43.33
+Waiting time: 41.67
+
+Workload 4:
+Usage: 94.12%
+Turnaround time: 138.33
+Response time: 81.67
+Waiting time: 85.00
+
+Workload 5:
+Usage: 94.12%
+Turnaround time: 138.33
+Response time: 81.67
+Waiting time: 85.00
+
+Workload 6:
+Usage: 83.87%
+Turnaround time: 40.00
+Response time: 19.00
+Waiting time: 14.00
+
+Workload 7:
+Usage: 0.00%
+Turnaround time: 0.00
+Response time: 0.00
+Waiting time: 0.00
