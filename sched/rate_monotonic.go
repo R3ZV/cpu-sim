@@ -4,21 +4,21 @@ import (
 	"sim/core"
 )
 
-type RMS struct {
+type RM struct {
 	Name string
 }
 
-func (self RMS) GetName() string {
+func (self RM) GetName() string {
 	return self.Name
 }
-func (self RMS) IsPreemptive() bool {
+func (self RM) IsPreemptive() bool {
 	return true
 }
-func (self RMS) Cmp(first, second core.Proc, time int) bool {
+func (self RM) Cmp(first, second core.Proc, time int) bool {
 	return first.ParentPeriod < second.ParentPeriod
 }
-func NewRMS(name string) RMS {
-	return RMS{
+func NewRM(name string) RM {
+	return RM{
 		name,
 	}
-} //TODO give this man a test
+}

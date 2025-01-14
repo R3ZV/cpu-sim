@@ -11,16 +11,17 @@ import (
 func addJobs(workload *[][]core.Proc) {
 	sched.FCFSJobs(workload)
 	sched.SJFJobs(workload)
+	sched.PSJFJobs(workload)
 }
 
 func main() {
 	schedAlgs := []sched.Scheduler{
 		sched.NewFCFS("FCFS"),
 		sched.NewSJF("SJF"),
-		sched.NewRMS("RMS"),
-		sched.NewEDF("EDF"),
+		sched.NewPSJF("PSJF"),
 		// TODO:
-		// sched.NewSJF("STCF"),
+		// sched.NewRM("RM"),
+		// sched.NewEDF("EDF"),
 		// sched.NewSJF("RR"),
 		// sched.NewPriority("Priority"),
 	}
@@ -35,16 +36,21 @@ func main() {
 			fmt.Printf("Workload %d:\n", i)
 
 			cpu := cpu.NewCPU(algo)
-			cpu.AddJobs(jobs)
-			cpu.PreemptiveFlag = algo.IsPreemptive() //the CPU needs to know if it's preemptive
-			for !cpu.IsDone() {
-				cpu.Tick() //we'v
+			procIdx := 0
+			for !cpu.IsDone() || procIdx < len(jobs) {
+				for procIdx < len(jobs) && jobs[procIdx].Arrive == cpu.GetTimer() {
+					cpu.AddProc(jobs[procIdx])
+					procIdx += 1
+				}
+
+				cpu.Tick()
 			}
 
 			log.Assert(cpu.Procs.Len() == 0, "CPU hasn't finished its jobs")
 
 			fmt.Printf("Usage: %.2f%%\n", cpu.Usage())
 			fmt.Printf("Turnaround time: %.2f\n", cpu.TurnaroundTime())
+			fmt.Printf("Response time: %.2f\n", cpu.ResponseTime())
 			fmt.Printf("Waiting time: %.2f\n", cpu.WaitTime())
 			fmt.Printf("\n")
 		}

@@ -1,12 +1,15 @@
 package core
 
 type Proc struct {
-	Pid          int
-	Burst        int
-	InitBurst    int
-	Arrive       int
-	Priority     int
-	ParentPeriod int //for the real-time algorithms, we'll need to know how often it's made
+	Pid       int
+	Burst     int
+	InitBurst int
+	Arrive    int
+	Priority  int
+
+	// for the real-time algorithms, we'll need to know how often it's made
+	// if this value is -1 it means that the process doesn't have a period
+	ParentPeriod int
 }
 type ProcGenerator struct {
 	Id     int

@@ -17,10 +17,7 @@ func (self SJF) IsPreemptive() bool {
 }
 
 func (self SJF) Cmp(first, other core.Proc, time int) bool {
-	if first.Arrive == other.Arrive {
-		return first.Burst < other.Burst
-	}
-	return first.Arrive < other.Arrive
+	return first.Burst < other.Burst
 }
 
 func NewSJF(name string) SJF {
@@ -45,9 +42,9 @@ func SJFJobs(workload *[][]core.Proc) {
 
 	// Relaxing assumption 1.
 	jobs = []core.Proc{
+		*core.NewProc(2, 100, 0, 0, -1),
 		*core.NewProc(0, 10, 10, 0, -1),
 		*core.NewProc(1, 10, 10, 0, -1),
-		*core.NewProc(2, 100, 0, 0, -1),
 	}
 
 	*workload = append(*workload, jobs)
