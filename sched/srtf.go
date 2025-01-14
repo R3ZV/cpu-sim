@@ -12,7 +12,7 @@ func (self SRTF) GetName() string {
 	return self.name
 }
 
-func (self SRTF) Cmp(first, other core.Proc) bool {
+func (self SRTF) Cmp(first, other core.Proc, time int) bool {
 	return first.Burst < other.Burst
 }
 

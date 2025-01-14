@@ -14,8 +14,8 @@ func (self RMS) GetName() string {
 func (self RMS) IsPreemptive() bool {
 	return true
 }
-func (self RMS) Cmp(first, second core.Proc) bool {
-	return first.ParentPeriod < second.ParentPeriod //why does go believe public=capitalized?
+func (self RMS) Cmp(first, second core.Proc, time int) bool {
+	return first.ParentPeriod < second.ParentPeriod
 }
 func NewRMS(name string) RMS {
 	return RMS{

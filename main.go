@@ -18,11 +18,11 @@ func main() {
 		sched.NewFCFS("FCFS"),
 		sched.NewSJF("SJF"),
 		sched.NewRMS("RMS"),
+		sched.NewEDF("EDF"),
 		// TODO:
 		// sched.NewSJF("STCF"),
 		// sched.NewSJF("RR"),
 		// sched.NewPriority("Priority"),
-		// sched.NewSJF("EDF"),
 	}
 
 	workload := [][]core.Proc{}
@@ -36,13 +36,9 @@ func main() {
 
 			cpu := cpu.NewCPU(algo)
 			cpu.AddJobs(jobs)
-
+			cpu.PreemptiveFlag = algo.IsPreemptive() //the CPU needs to know if it's preemptive
 			for !cpu.IsDone() {
-				if algo.IsPreemptive() {
-					cpu.PreemptiveTick()
-				} else {
-					cpu.Tick()
-				}
+				cpu.Tick() //we'v
 			}
 
 			log.Assert(cpu.Procs.Len() == 0, "CPU hasn't finished its jobs")

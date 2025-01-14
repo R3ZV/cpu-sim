@@ -9,13 +9,15 @@ import (
 )
 
 type CPU struct {
-	timer        int
-	activeTimer  int
-	currProc     *core.Proc
-	Procs        *core.ProcHeap
-	taTimes      []int
-	waitTimes    []int
-	arrivalTimes []int
+	timer          int
+	activeTimer    int
+	currProc       *core.Proc
+	Procs          *core.ProcHeap
+	eventFlag      bool //flag to alert us if we need to check for a switch
+	PreemptiveFlag bool
+	taTimes        []int
+	waitTimes      []int
+	arrivalTimes   []int
 }
 
 // auxiliary function to check if sonething is an arrival time
@@ -29,7 +31,7 @@ func exists(l []int, key int) bool {
 }
 
 func NewCPU(schedAlgo sched.Scheduler) *CPU {
-	procHeap := core.NewProcHeap(schedAlgo.Cmp)
+	procHeap := core.NewProcHeap(schedAlgo.Cmp, 0) //the CPU time always starts at 0
 	heap.Init(procHeap)
 
 	return &CPU{
@@ -81,20 +83,28 @@ func (self *CPU) procDone() bool {
 func (self *CPU) Tick() {
 	if self.available() {
 		self.loadProc()
-		self.waitTimes = append(self.waitTimes, self.timer-self.currProc.Arrive)
 	}
 
 	if self.procDone() {
 		self.taTimes = append(self.taTimes, self.timer-self.currProc.Arrive)
+		self.waitTimes = append(self.waitTimes, self.timer-self.currProc.Arrive-self.currProc.InitBurst)
 		self.unloadProc()
 		self.timer--
 	}
-
+	///there's no way to determine if it's an arrival otherwise
+	if exists(self.arrivalTimes, self.timer) {
+		self.eventFlag = true
+	}
+	if self.PreemptiveFlag == true && self.eventFlag == true {
+		self.changeProc() //this might actually do nothing, since the process
+		self.eventFlag = false
+	}
 	if self.currProc != nil {
 		self.currProc.Burst--
 		self.activeTimer++
 	}
 	self.timer++
+	self.Procs.SetTime(self.timer)
 }
 
 // we need a different Tick() to implement preemption,
@@ -109,6 +119,7 @@ func (self *CPU) PreemptiveTick() {
 		self.waitTimes = append(self.waitTimes, self.timer-self.currProc.Arrive-self.currProc.InitBurst)
 		self.unloadProc()
 		self.timer--
+		self.Procs.SetTime(self.timer)
 	}
 
 	// if exists(self.arrivalTimes, self.timer) {
@@ -120,6 +131,7 @@ func (self *CPU) PreemptiveTick() {
 		self.activeTimer++
 	}
 	self.timer++
+	self.Procs.SetTime(self.timer)
 }
 
 func (self *CPU) IsDone() bool {
