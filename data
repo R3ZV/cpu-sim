@@ -1,0 +1,190 @@
+Testing FCFS
+============
+Workload 0:
+Usage: 100.00%
+Turnaround time: 20.00
+Response time: 10.00
+Waiting time: 10.00
+
+Workload 1:
+Usage: 100.00%
+Turnaround time: 110.00
+Response time: 70.00
+Waiting time: 70.00
+
+Workload 2:
+Usage: 100.00%
+Turnaround time: 67.50
+Response time: 27.50
+Waiting time: 27.50
+
+Workload 3:
+Usage: 100.00%
+Turnaround time: 103.33
+Response time: 63.33
+Waiting time: 63.33
+
+Workload 4:
+Usage: 100.00%
+Turnaround time: 126.67
+Response time: 73.33
+Waiting time: 73.33
+
+Workload 5:
+Usage: 100.00%
+Turnaround time: 126.67
+Response time: 73.33
+Waiting time: 73.33
+
+Testing SJF
+============
+Workload 0:
+Usage: 100.00%
+Turnaround time: 20.00
+Response time: 10.00
+Waiting time: 10.00
+
+Workload 1:
+Usage: 100.00%
+Turnaround time: 50.00
+Response time: 10.00
+Waiting time: 10.00
+
+Workload 2:
+Usage: 100.00%
+Turnaround time: 65.00
+Response time: 25.00
+Waiting time: 25.00
+
+Workload 3:
+Usage: 100.00%
+Turnaround time: 103.33
+Response time: 63.33
+Waiting time: 63.33
+
+Workload 4:
+Usage: 100.00%
+Turnaround time: 113.33
+Response time: 60.00
+Waiting time: 60.00
+
+Workload 5:
+Usage: 100.00%
+Turnaround time: 113.33
+Response time: 60.00
+Waiting time: 60.00
+
+Testing PSJF
+============
+Workload 0:
+Usage: 100.00%
+Turnaround time: 20.00
+Response time: 10.00
+Waiting time: 10.00
+
+Workload 1:
+Usage: 100.00%
+Turnaround time: 50.00
+Response time: 10.00
+Waiting time: 10.00
+
+Workload 2:
+Usage: 100.00%
+Turnaround time: 65.00
+Response time: 25.00
+Waiting time: 25.00
+
+Workload 3:
+Usage: 96.00%
+Turnaround time: 55.00
+Response time: 16.67
+Waiting time: 15.00
+
+Workload 4:
+Usage: 94.12%
+Turnaround time: 85.00
+Response time: 35.00
+Waiting time: 31.67
+
+Workload 5:
+Usage: 94.12%
+Turnaround time: 85.00
+Response time: 35.00
+Waiting time: 31.67
+
+Testing Priority
+============
+Workload 0:
+Usage: 100.00%
+Turnaround time: 20.00
+Response time: 10.00
+Waiting time: 10.00
+
+Workload 1:
+Usage: 100.00%
+Turnaround time: 110.00
+Response time: 70.00
+Waiting time: 70.00
+
+Workload 2:
+Usage: 100.00%
+Turnaround time: 67.50
+Response time: 27.50
+Waiting time: 27.50
+
+Workload 3:
+Usage: 96.00%
+Turnaround time: 81.67
+Response time: 43.33
+Waiting time: 41.67
+
+Workload 4:
+Usage: 94.12%
+Turnaround time: 138.33
+Response time: 81.67
+Waiting time: 85.00
+
+Workload 5:
+Usage: 94.12%
+Turnaround time: 123.33
+Response time: 66.67
+Waiting time: 70.00
+
+Testing RM
+============
+Workload 0:
+Usage: 100.00%
+Turnaround time: 20.00
+Response time: 10.00
+Waiting time: 10.00
+
+Workload 1:
+Usage: 100.00%
+Turnaround time: 110.00
+Response time: 70.00
+Waiting time: 70.00
+
+Workload 2:
+Usage: 100.00%
+Turnaround time: 67.50
+Response time: 27.50
+Waiting time: 27.50
+
+Workload 3:
+Usage: 96.00%
+Turnaround time: 81.67
+Response time: 43.33
+Waiting time: 41.67
+
+Workload 4:
+Usage: 94.12%
+Turnaround time: 138.33
+Response time: 81.67
+Waiting time: 85.00
+
+Workload 5:
+Usage: 94.12%
+Turnaround time: 138.33
+Response time: 81.67
+Waiting time: 85.00
+
