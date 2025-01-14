@@ -37,13 +37,18 @@ func main() {
 		for i, jobs := range workload {
 			duration := -1
 			if algo.IsRealTime() {
-				duration = 0
 				for _, job := range jobs {
+					if job.Period == -1 {
+						break
+					}
+					if duration == -1 {
+						duration = 1
+					}
 					duration = math.LCM(duration, job.Period)
 				}
 			}
 
-            log.Debug("LCM: %d\n", duration)
+			log.Debug("LCM: %d\n", duration)
 
 			fmt.Printf("Workload %d:\n", i)
 

@@ -50,7 +50,7 @@ for line in content:
         elif words[0] == "Waiting":
             loads[current_load].waits.append(float(words[2]))
         elif words[0] == "Response":
-            loads[current_load].waits.append(float(words[2]))
+            loads[current_load].resps.append(float(words[2]))
 
 for i in range(1, count_loads + 1):
     plot_workload(f"Workload {i}", "Usage", loads[i].algorithms, loads[i].usages, "green")
