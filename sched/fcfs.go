@@ -15,6 +15,9 @@ func (self FCFS) GetName() string {
 func (self FCFS) IsPreemptive() bool {
 	return false
 }
+func (self FCFS) IsRealTime() bool {
+    return false
+}
 
 func (self FCFS) Cmp(first, other core.Proc, time int) bool {
 	return first.Arrive < other.Arrive

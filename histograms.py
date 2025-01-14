@@ -18,7 +18,6 @@ def plot_workload(name, metric, listAlgs, listTimes, hist_color):
     plt.savefig(save_path, format="jpg", dpi=300)
     plt.clf()
 
-    
 class Workload:
     algorithms = []
     usages = []

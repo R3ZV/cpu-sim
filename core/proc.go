@@ -7,9 +7,8 @@ type Proc struct {
 	Arrive    int
 	Priority  int
 
-	// for the real-time algorithms, we'll need to know how often it's made
 	// if this value is -1 it means that the process doesn't have a period
-	ParentPeriod int
+	Period int
 }
 type ProcGenerator struct {
 	Id     int

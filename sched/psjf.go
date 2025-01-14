@@ -16,6 +16,10 @@ func (self PSJF) IsPreemptive() bool {
 	return true
 }
 
+func (self PSJF) IsRealTime() bool {
+    return false
+}
+
 func (self PSJF) Cmp(first, other core.Proc, time int) bool {
 	return first.Burst < other.Burst
 }

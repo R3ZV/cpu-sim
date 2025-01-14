@@ -13,8 +13,13 @@ func (self EDF) GetName() string {
 }
 
 func (self EDF) Cmp(first, other core.Proc, time int) bool {
-	return first.ParentPeriod-(time%first.ParentPeriod) < other.ParentPeriod-(time%other.ParentPeriod)
+	return first.Period-(time%first.Period) < other.Period-(time%other.Period)
 }
+
+func (self EDF) IsRealTime() bool {
+	return true
+}
+
 func (self EDF) IsPreemptive() bool {
 	return true
 }

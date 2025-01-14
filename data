@@ -154,37 +154,37 @@ Testing RM
 ============
 Workload 0:
 Usage: 100.00%
-Turnaround time: 20.00
-Response time: 10.00
-Waiting time: 10.00
+Turnaround time: 0.00
+Response time: 0.00
+Waiting time: 0.00
 
 Workload 1:
 Usage: 100.00%
-Turnaround time: 110.00
-Response time: 70.00
-Waiting time: 70.00
+Turnaround time: 0.00
+Response time: 0.00
+Waiting time: 0.00
 
 Workload 2:
 Usage: 100.00%
-Turnaround time: 67.50
-Response time: 27.50
-Waiting time: 27.50
+Turnaround time: 0.00
+Response time: 0.00
+Waiting time: 0.00
 
 Workload 3:
-Usage: 96.00%
-Turnaround time: 81.67
-Response time: 43.33
-Waiting time: 41.67
+Usage: 100.00%
+Turnaround time: 0.00
+Response time: 0.00
+Waiting time: 0.00
 
 Workload 4:
-Usage: 94.12%
-Turnaround time: 138.33
-Response time: 81.67
-Waiting time: 85.00
+Usage: 100.00%
+Turnaround time: 0.00
+Response time: 0.00
+Waiting time: 0.00
 
 Workload 5:
-Usage: 94.12%
-Turnaround time: 138.33
-Response time: 81.67
-Waiting time: 85.00
+Usage: 100.00%
+Turnaround time: 0.00
+Response time: 0.00
+Waiting time: 0.00
 

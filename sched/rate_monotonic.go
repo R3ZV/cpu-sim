@@ -11,11 +11,17 @@ type RM struct {
 func (self RM) GetName() string {
 	return self.Name
 }
+
 func (self RM) IsPreemptive() bool {
 	return true
 }
+
+func (self RM) IsRealTime() bool {
+    return true
+}
+
 func (self RM) Cmp(first, second core.Proc, time int) bool {
-	return first.ParentPeriod < second.ParentPeriod
+	return first.Period < second.Period
 }
 func NewRM(name string) RM {
 	return RM{

@@ -1,11 +1,13 @@
 package main
 
 import (
-	"fmt"
 	"sim/core"
 	"sim/cpu"
 	"sim/log"
+	"sim/math"
 	"sim/sched"
+
+	"fmt"
 )
 
 func addJobs(workload *[][]core.Proc) {
@@ -21,7 +23,6 @@ func main() {
 		sched.NewSJF("SJF"),
 		sched.NewPSJF("PSJF"),
 		sched.NewPriority("Priority"),
-		// TODO:
 		sched.NewRM("RM"),
 		// sched.NewEDF("EDF"),
 		// sched.NewSJF("RR"),
@@ -34,6 +35,16 @@ func main() {
 		fmt.Printf("Testing %s\n", algo.GetName())
 		fmt.Println("============")
 		for i, jobs := range workload {
+			duration := -1
+			if algo.IsRealTime() {
+				duration = 0
+				for _, job := range jobs {
+					duration = math.LCM(duration, job.Period)
+				}
+			}
+
+            log.Debug("LCM: %d\n", duration)
+
 			fmt.Printf("Workload %d:\n", i)
 
 			cpu := cpu.NewCPU(algo)
@@ -45,9 +56,13 @@ func main() {
 				}
 
 				cpu.Tick()
+
+				if duration != -1 && cpu.GetTimer() >= duration {
+					break
+				}
 			}
 
-			log.Assert(cpu.Procs.Len() == 0, "CPU hasn't finished its jobs")
+			// log.Assert(cpu.Procs.Len() == 0, "CPU hasn't finished its jobs")
 
 			fmt.Printf("Usage: %.2f%%\n", cpu.Usage())
 			fmt.Printf("Turnaround time: %.2f\n", cpu.TurnaroundTime())
