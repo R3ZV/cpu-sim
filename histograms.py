@@ -18,13 +18,13 @@ def plot_workload(name, metric, listAlgs, listTimes, hist_color):
     plt.savefig(save_path, format="jpg", dpi=300)
     plt.clf()
 
-
+    
 class Workload:
     algorithms = []
     usages = []
     tas = []
     waits = []
-
+    resps = []
 
 f = open("data", "r")
 content = f.readlines()
@@ -50,9 +50,11 @@ for line in content:
             loads[current_load].tas.append(float(words[2]))
         elif words[0] == "Waiting":
             loads[current_load].waits.append(float(words[2]))
+        elif words[0] == "Response":
+            loads[current_load].waits.append(float(words[2]))
 
 for i in range(1, count_loads + 1):
     plot_workload(f"Workload {i}", "Usage", loads[i].algorithms, loads[i].usages, "green")
     plot_workload(f"Workload {i}", "Turnaround", loads[i].algorithms, loads[i].tas, "blue")
     plot_workload(f"Workload {i}", "Waiting", loads[i].algorithms, loads[i].waits, "red")
-
+    plot_workload(f"Workload {i}", "Responding", loads[i].algorithms, loads[i].waits, "darkviolet")
