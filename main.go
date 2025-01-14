@@ -22,7 +22,7 @@ func main() {
 		sched.NewPSJF("PSJF"),
 		sched.NewPriority("Priority"),
 		// TODO:
-		// sched.NewRM("RM"),
+		sched.NewRM("RM"),
 		// sched.NewEDF("EDF"),
 		// sched.NewSJF("RR"),
 	}
