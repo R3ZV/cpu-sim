@@ -1,3 +1,6 @@
+stats:
+	@go run . > data
+	@python3 histograms.py
 run:
 	@go run .
 
