@@ -7,10 +7,10 @@ Implemented algorithms:
 
  - [x] First Come, First Served (FCFS)
  - [x] Shortest Job First (SJF)
- - [ ] Shortest time to Completion First (STCF)
+ - [x] Preemptive Shortest Job First (PSJF)
+ - [x] Priority based
  - [ ] Round Robin (RR)
- - [ ] Priority based
- - [x] Rate monotonic (RM)
+ - [ ] Rate monotonic (RM)
  - [ ] Earliest Deadline First (EDF)
 
 # Metrics
@@ -19,8 +19,8 @@ In order to compare scheduling algorithms we will evaluate them based on the
 following metrics:
 
 - [x] Turnaround time (T_completion - T_arrival)
-- [ ] Waiting time
-- [ ] Response time
+- [x] Waiting time (T_turnaround - T_burst)
+- [x] Response time (T_first_on_cpu - T_arrival)
 
 # Results
 

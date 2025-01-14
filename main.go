@@ -12,6 +12,7 @@ func addJobs(workload *[][]core.Proc) {
 	sched.FCFSJobs(workload)
 	sched.SJFJobs(workload)
 	sched.PSJFJobs(workload)
+	sched.PriorityJobs(workload)
 }
 
 func main() {
@@ -19,11 +20,11 @@ func main() {
 		sched.NewFCFS("FCFS"),
 		sched.NewSJF("SJF"),
 		sched.NewPSJF("PSJF"),
+		sched.NewPriority("Priority"),
 		// TODO:
 		// sched.NewRM("RM"),
 		// sched.NewEDF("EDF"),
 		// sched.NewSJF("RR"),
-		// sched.NewPriority("Priority"),
 	}
 
 	workload := [][]core.Proc{}
