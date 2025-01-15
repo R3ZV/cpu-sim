@@ -16,8 +16,8 @@ def plot_workload(name, metric, listAlgs, listTimes, hist_color):
     plt.xlabel(name)
     plt.title(metric)
     if metric == "Usage":
-        plt.ylim(0, 100)
-
+        print("List: ", listTimes)
+        plt.ylim(0.0, 100.0)
     plt.savefig(save_path, format="jpg", dpi=300)
     plt.clf()
 
@@ -28,6 +28,13 @@ class Workload:
     waits = []
     resps = []
 
+    def __init__(self):
+        self.algorithms = []
+        self.usages = []
+        self.tas = []
+        self.waits = []
+        self.resps = []
+
 f = open("data", "r")
 content = f.readlines()
 count_loads = 0
@@ -37,7 +44,10 @@ for line in content:
         count_loads = max(int(words[1][0:-1]), count_loads)
 
 # workloads in the test data are 1-indexed, arrays are 0-indexed,
-loads = [Workload() for i in range(count_loads + 1)]
+loads = []
+for i in range(count_loads + 1):
+    loads.append(Workload())
+
 for line in content:
     words = line.split()
     if len(words) > 0:
