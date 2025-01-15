@@ -15,6 +15,9 @@ def plot_workload(name, metric, listAlgs, listTimes, hist_color):
     plt.bar(listAlgs, listTimes, color=hist_color)
     plt.xlabel(name)
     plt.title(metric)
+    if metric == "Usage":
+        plt.ylim(0, 100)
+
     plt.savefig(save_path, format="jpg", dpi=300)
     plt.clf()
 
@@ -56,4 +59,4 @@ for i in range(1, count_loads + 1):
     plot_workload(f"Workload {i}", "Usage", loads[i].algorithms, loads[i].usages, "green")
     plot_workload(f"Workload {i}", "Turnaround", loads[i].algorithms, loads[i].tas, "blue")
     plot_workload(f"Workload {i}", "Waiting", loads[i].algorithms, loads[i].waits, "red")
-    plot_workload(f"Workload {i}", "Responding", loads[i].algorithms, loads[i].waits, "darkviolet")
+    plot_workload(f"Workload {i}", "Responding", loads[i].algorithms, loads[i].resps, "darkviolet")
